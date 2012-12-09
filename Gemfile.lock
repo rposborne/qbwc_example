@@ -29,6 +29,10 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    buffered_logger (0.1.3)
+      activesupport
+      i18n
+      term-ansicolor
     builder (3.0.4)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -41,6 +45,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.1)
+    httpclient (2.1.5.2)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.1.4)
@@ -53,7 +58,15 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.19)
     multi_json (1.4.0)
+    nokogiri (1.5.5)
     polyglot (0.3.3)
+    qbwc (0.0.4)
+      quickbooks_api (>= 0.1.6)
+      rubyjedi-soap4r (>= 1.5.8.20100619003610)
+    quickbooks_api (0.1.7)
+      activesupport
+      buffered_logger (>= 0.1.3)
+      nokogiri
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -79,6 +92,8 @@ GEM
     rake (10.0.2)
     rdoc (3.12)
       json (~> 1.4)
+    rubyjedi-soap4r (1.5.8.20100619003610)
+      httpclient (~> 2.1.5.2)
     sass (3.2.3)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -89,6 +104,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.6)
+    term-ansicolor (1.0.7)
     thor (0.16.0)
     tilt (1.3.3)
     treetop (1.4.12)
@@ -105,6 +121,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
+  qbwc
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)
   sqlite3
