@@ -1,6 +1,6 @@
 class QbwcController < ApplicationController
   require "Quickbooks"
-  protect_from_forgery :except => :api 
+  protect_from_forgery :except => :api
   def qwc
     qwc = <<-QWC
     <QBWCXML>
@@ -15,7 +15,7 @@ class QbwcController < ApplicationController
     <QBType>QBFS</QBType>
     <Style>Document</Style>
     <Scheduler>
-      <RunEveryNMinutes>5</RunEveryNMinutes>
+    <RunEveryNMinutes>5</RunEveryNMinutes>
     </Scheduler>
     </QBWCXML>
     QWC
@@ -30,10 +30,33 @@ class QbwcController < ApplicationController
       return
     end
 
+    #Just a cheap way to add a job for every request.
+
+    # if params["Envelope"]["Body"].keys.first =="authenticate"
+    #   QBWC.add_job(:import_vendors) do
+    #     '<QBXML>
+    #     <QBXMLMsgsRq onError="continueOnError">
+    #     <VendorQueryRq requestID="6" iterator="Start">
+    #     <MaxReturned>5</MaxReturned>
+    #     <FromModifiedDate>1984-01-29T22:03:19-05:00</FromModifiedDate>
+    #     <OwnerID>0</OwnerID>
+    #   </VendorQueryRq>
+    #   </QBXMLMsgsRq>
+    #   </QBXML>
+    #   '
+    #   end
+
+    #   QBWC.jobs[:import_vendors].set_response_proc do |qbxml|
+    #     puts "====================Dumping QBXML====================="
+    #     puts qbxml
+    #   end
+
+    # end
+
     req = request
-    puts "========== #{ params["Envelope"]["Body"].keys.first}  =========="
+    Rails.logger.info "========== #{ params["Envelope"]["Body"].keys.first}  =========="
     res = QBWC::SoapWrapper.route_request(req)
-    render :xml => res, :content_type => 'text/xml'
+    Rails.logger.info render :xml => res, :content_type => 'text/xml'
   end
 
 end

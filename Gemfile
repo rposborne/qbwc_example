@@ -19,7 +19,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'qbwc'
+gem 'qbwc', :git => 'git://github.com/skyrl/qbwc.git'
 
 gem 'jquery-rails'
 
